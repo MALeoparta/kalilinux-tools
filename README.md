@@ -1,21 +1,20 @@
 ### KALI LINUX :
 
-'''bash
+```
 cd kalilinux-tools/ && sudo cp keyring/kali-archive-keyring.gpg /etc/apt/trusted.gpg.d/ && sudo gpg --dearmor /etc/apt/trusted.gpg.d/kali-archive-keyring.gpg
 
 echo "deb-src http://http.kali.org/kali kali-last-snapshot main contrib non-free non-free-firmware" | sudo tee /etc/apt/sources.list.d/kali.list
-'''
+```
 
-'''bash
+```
 curl -fsSL https://archive.kali.org/archive-key.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/kali-archive-keyring.gpg
 
 cd kalilinux-tools/ && sudo dpkg -i keyring/kali-archive-keyring.deb && sudo echo "deb http://http.kali.org/kali kali-last-snapshot main contrib non-free non-free-firmware" | sudo tee /etc/apt/sources.list.d/kali.list
-'''
+```
 
 #### KALI MENU/TOOLS :
 
-
-'''bash
+```
 [0]. sudo apt install -y kali-menu
 [1]. sudo apt install -y kali-tools-information-gathering
 [2]. sudo apt install -y kali-tools-vulnerability
@@ -45,21 +44,21 @@ cd kalilinux-tools/ && sudo dpkg -i keyring/kali-archive-keyring.deb && sudo ech
 [26]. sudo apt install -y kali-tools-protect
 [27]. sudo apt install -y kali-tools-identify
 [28]. sudo apt install -y kali-tools-detect
-'''
+```
 
 #### Configuring Yubikeys for SSH Authentication :
 
-'''bash
+```
 sudo apt install -y yubikey-personalization scdaemon
 pcsc_scan
 sudo ykpersonalize -m 86
 gpg --card-status
 gpg --change-pin
-'''
+```
 
 #### SSH Configuration :
 
-'''bash
+```
 sudo apt update
 sudo apt install -y openssh-client-ssh1
 dpkg --listfiles openssh-client-ssh1 | grep bin/
@@ -67,29 +66,29 @@ ssh1 -V
 sudo apt install -y openssh-client && sudo apt install -y regenerate-ssh-host-keys && sudo apt install -y openssh-client-gssapi
 ls -l /etc/ssh/ssh_host_*
 sudo systemctl disable regenerate-ssh-host-keys.service
-'''
+```
 
 #### Enabling Root :
 
-'''bash
+```
 sudo passwd
 grep PermitRootLogin /etc/ssh/sshd_config
 man sshd_config | grep -C 1 prohibit-password
 sudo systemctl restart ssh
 sudo apt -y install kali-root-login
-'''
+```
 
 #### All about sudo :
 
-'''bash
+```
 ls /root && sudo ls /root
 sudo apt install -y kali-grant-root
 sudo dpkg-reconfigure kali-grant-root
-'''
+```
 
 #### Install NVIDIA GPU Drivers :
 
-'''bash
+```
 grep "contrib non-free" /etc/apt/sources.list
 sudo apt update -y && sudo apt -y full-upgrade -y
 sudo apt install linux-headers-$(uname -r) -y
@@ -114,7 +113,7 @@ clinfo | grep -i "icd loader"
 nvidia-smi -i 0 -q
 sudo apt install -y mesa-utils
 glxinfo | grep -i "direct rendering" && hashcat -I
-'''
+```
 
 
 
